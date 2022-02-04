@@ -15,11 +15,12 @@ functions that you will be creating in your Checkbook class (12 in total).
      uncomment the call to that function, compile your project and test
      it with that option.
 *************************************************************************/
+
 #include <iostream>
 #include <fstream>
 #include <string>
 #include "check.h"
-//#include "checkbook.h"
+#include "checkbook.h"
 using namespace std;
 
 /* This function shows the user the menu, asks them to enter their 
@@ -31,64 +32,64 @@ int main(){
     ifstream ifs;
     ofstream ofs;
     string user,userfile;
-    int choice;  // user menu choice
-    double depamount;  // amount of a deposit
-    int rmnum;      // Check number to be removed from checkbook
-    string payto_find; // used in listing all checks to a certain entity
+    int choice;         // user menu choice
+    double depamount;   // amount of a deposit
+    int rmnum;          // Check number to be removed from checkbook
+    string payto_find;  // used in listing all checks to a certain entity
 
     cout << "Please enter your user name (No spaces): ";
     cin >> user;
 
-    Checkbook mychecks; // A default checkbook is constructed
+    Checkbook mychecks;  // A default checkbook is constructed
     userfile = user + ".txt";
     ifs.open(userfile.c_str());
 
 	// if no file this is first running for this user
-    if(!ifs.fail()){ 
-		//	mychecks.load_from_file(ifs);
+    if (!ifs.fail()) {
+		mychecks.load_from_file(ifs);
 		ifs.close();
     }
 
-    do{
+    do {
 		choice = menu();
-		switch(choice){
+		switch (choice) {
 			case 1:
 				cout << "Please enter amount of the deposit: $";
 				cin >> depamount;
-				//mychecks.deposit(depamount);
+				mychecks.deposit(depamount);
 				break;
 			case 2:
-				//mychecks.write_check(cin);
+				mychecks.write_check(cin);
 				break;
 			case 3:
-				//cout << "Your account balance: $" << mychecks.get_balance();
+				cout << "Your account balance: $" << mychecks.get_balance();
 				break;
 			case 4:
-				//mychecks.show_all(cout);
+				mychecks.show_all(cout);
 				break;
 			case 5:
 				cout << "Enter the Check Number of the Check to be removed: ";
 				cin >> rmnum;
-				//mychecks.remove(rmnum);
+				mychecks.remove(rmnum);
 				break;
 			case 6:
-				//mychecks.number_sort();
+				mychecks.number_sort();
 				break;
 			case 7:
-				//mychecks.payto_sort();
+				mychecks.payto_sort();
 				break;
 			case 8:
-				//mychecks.date_sort();
+				mychecks.date_sort();
 				break;
 			case 9:
-				while(cin.peek() == '\n' || cin.peek() == '\r'){
-					cin.ignore(); // clear out leftover newlines
+				while (cin.peek() == '\n' || cin.peek() == '\r') {
+					cin.ignore();  // clear out leftover newlines
 				}
 				getline(cin, payto_find);
-				//mychecks.show(payto_find);
+				mychecks.show(payto_find);
 				break;
 			case 10:
-				//cout << "Your average check amount: $" << mychecks.average();
+				cout << "Your average check amount: $" << mychecks.average();
 				break;
 			case 0:
 				cout << "Thank you for using the Checkbook program.\n";
@@ -97,19 +98,19 @@ int main(){
 			default:
 				cout << "Invalid choice. Please choose again.\n";
 				break;
-		} // bottom of the switch
-    } while(choice != 0);
+		}
+    } while (choice != 0);
 
 	ofs.open(userfile.c_str());
-	if(!ofs.fail()){
-		//mychecks.save(ofs);
+	if (!ofs.fail()) {
+		mychecks.save(ofs);
 	    ofs.close();
 	}
 
 	return 0;
 }
 
-int menu(){
+int menu() {
     int choice;
 	
     cout << "Your Checkbook. Please choose from the following:\n";
