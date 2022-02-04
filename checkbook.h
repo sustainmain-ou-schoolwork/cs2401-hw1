@@ -1,6 +1,7 @@
 #ifndef CHECKBOOK_H
 #define CHECKBOOK_H
 
+#include <fstream>
 #include <iostream>
 #include <string>
 #include "check.h"
@@ -28,7 +29,7 @@ class Checkbook {
 
         // display or calculate info
         void show_all(std::ostream& outs) const;
-        void show(string payto_query) const;
+        void show(std::string payto_query) const;
         size_t average() const;
 
     private:
