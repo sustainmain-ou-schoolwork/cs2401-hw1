@@ -13,12 +13,12 @@
 		Patricia Lindner	Ohio University EECS	August 2021
 *************************************************************************/
 
-
 #include <iostream>
 #include <ctype.h>
 
-#ifndef DATE
-#define DATE
+#ifndef DATE_H
+#define DATE_H
+
 // an exception if the date entered is invalid for the month
 class bad_day{
     public:

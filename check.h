@@ -10,8 +10,8 @@ operator.
 	Patricia Lindner	Ohio University EECS	August 2021
 *************************************************************************/
 
-#ifndef CHEESEY
-#define CHEESEY
+#ifndef CHECK_H
+#define CHECK_H
 
 #include <iostream>
 #include <string>
