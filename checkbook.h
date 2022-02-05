@@ -8,13 +8,16 @@
 
 class Checkbook {
     public:
+        // constructor
+        Checkbook();
+
         static const size_t SIZE = 200;  // max number of checks allowed
 
         // accessor
         int get_balance() const {return balance;}
 
         // modifier
-        void deposit(size_t amount);
+        void deposit(size_t amount) {balance += amount;}
         void write_check(std::istream& ins);
         void remove(size_t checkNum);
 
@@ -30,10 +33,10 @@ class Checkbook {
         // display or calculate info
         void show_all(std::ostream& outs) const;
         void show(std::string payto_query) const;
-        size_t average() const;
+        double average() const;
 
     private:
-        size_t checks[SIZE];  // array of all the checks
+        Check checks[SIZE];   // array of all the checks
         size_t used;          // number of checks used
         size_t nextCheckNum;  // number of next available check
         int balance;          // balance of the account
