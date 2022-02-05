@@ -2,7 +2,8 @@ CC = g++
 CFLAGS = -g -Wall -std=c++11
 
 a.out: commented_main.o checkbook.o
-	$(CC) $(CFLAGS) commented_main.o checkbook.o -o a.out
+#	$(CC) $(CFLAGS) commented_main.o checkbook.o -o a.out
+	$(CC) $(CFLAGS) commented_main.cc checkbook.cc check.cc date.cc -o a.out
 
 commented_main.o: commented_main.cc checkbook.o checkbook.h
 	$(CC) $(CFLAGS) -c commented_main.cc
