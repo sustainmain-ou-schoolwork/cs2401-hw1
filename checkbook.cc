@@ -22,9 +22,9 @@ void Checkbook::write_check(std::istream& ins) {
         return;
     }
 
-    // create a check
+    // create a check and set values
     Check tmp;
-    tmp.write_check(ins);
+    ins >> tmp;
 
     // set the check number if it wasn't previously set
     if (&ins == &cin) {
