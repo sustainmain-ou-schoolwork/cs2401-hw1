@@ -40,6 +40,9 @@ class Checkbook {
         size_t used;          // number of checks used
         size_t nextCheckNum;  // number of next available check
         int balance;          // balance of the account
+
+        // helper functions
+        void clearNewlines(std::istream& ins);
 };
 
 #endif
