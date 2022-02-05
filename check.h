@@ -39,6 +39,9 @@ class Check{
 		Date date;
 		std::string payto;
 		double amount;
+		
+        // helper functions
+        void clearNewlines(std::istream& ins);
 };
 
 std::ostream& operator << (std::ostream& outs, const Check& c);

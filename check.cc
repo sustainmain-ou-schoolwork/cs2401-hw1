@@ -18,10 +18,20 @@ Check::Check(Date d, string p, int num, double amt){
 
 // Input and output functions
 void Check::write_check(std::istream& ins){
-	/* You are to write the implementation of this function to read 
-	from the keyboard or a file. Remember to use getline to read the 
-	payto.  */
+    // if the check is being entered manually, don't let the user enter the check number
+    if (&ins == &cin) {
+        cout << "Enter the date, the recipient, and the amount: ";
+    }
+    else {
+        ins >> checknum;
+        clearNewlines(ins);
+    }
 
+    // get the other values
+    ins >> date;
+    clearNewlines(ins);
+    getline(ins, payto);
+    ins >> amount;
 }
 
 void Check::output(std::ostream& outs)const{
@@ -39,4 +49,15 @@ ostream& operator << (ostream& outs, const Check& c){
 istream& operator >> (istream& ins, Check& c){
 	c.write_check(ins);
 	return ins;
+}
+
+/**
+ * @brief Clears out any newline characters at the beginning of the stream
+ * 
+ * @param ins the stream to be cleared of newlines
+ */
+void Check::clearNewlines(std::istream& ins) {
+    while (cin.peek() == '\n' || cin.peek() == '\r') {
+        cin.ignore();
+    }
 }
