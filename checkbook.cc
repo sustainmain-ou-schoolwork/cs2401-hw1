@@ -49,6 +49,16 @@ void Checkbook::show(std::string payto_query) const {
 
 }
 
+/**
+ * @brief Returns the average amount of all checks in the checkbook. 
+ * 
+ * @return the average
+ */
 double Checkbook::average() const {
+    int total = 0;
+    for (size_t i = 0; i < used; i++) {
+        total += checks[i].get_amount();
+    }
 
+    return total / used;
 }
