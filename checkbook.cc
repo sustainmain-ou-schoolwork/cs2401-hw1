@@ -52,9 +52,9 @@ void Checkbook::write_check(std::istream& ins) {
  */
 void Checkbook::remove(size_t checkNum) {
     for (size_t i = 0; i < used; i++) {
-        if (checks[i].get_num() == checkNum) {
+        if (static_cast<size_t>(checks[i].get_num()) == checkNum) {
             // move all the remaining checks up one place in the checkbook, effectively deleting the last
-            for (int j = i; j < (used - 1); j++) {
+            for (size_t j = i; j < (used - 1); j++) {
                 checks[j] = checks[j + 1];
             }
 
