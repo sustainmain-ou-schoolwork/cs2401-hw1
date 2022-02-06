@@ -27,7 +27,7 @@ void Checkbook::write_check(std::istream& ins) {
     Check tmp;
     ins >> tmp;
 
-    // only add the check if all the data was read s
+    // only add the check if all the data was read successfully
     if (!ins.fail()) {
         // if input is from console
         if (&ins == &cin) {
@@ -53,7 +53,7 @@ void Checkbook::write_check(std::istream& ins) {
 void Checkbook::remove(size_t checkNum) {
     for (size_t i = 0; i < used; i++) {
         if (checks[i].get_num() == checkNum) {
-            // move all the remaining checks up one place in the checkbook, effectively deleting 
+            // move all the remaining checks up one place in the checkbook, effectively deleting the last
             for (int j = i; j < (used - 1); j++) {
                 checks[j] = checks[j + 1];
             }
