@@ -45,8 +45,28 @@ void Checkbook::write_check(std::istream& ins) {
     }
 }
 
+/**
+ * @brief Remove a check from the checkbood.
+ * 
+ * @param checkNum number of the check to remove
+ */
 void Checkbook::remove(size_t checkNum) {
+    for (size_t i = 0; i < used; i++) {
+        if (checks[i].get_num() == checkNum) {
+            // move all the remaining checks up one place in the checkbook, effectively deleting 
+            for (int j = i; j < (used - 1); j++) {
+                checks[j] = checks[j + 1];
+            }
 
+            // set the last element of the checkbook to an empty check
+            Check tmp;
+            checks[used - 1] = tmp;
+            
+            // decrement counters
+            used--;
+            nextCheckNum--;
+        }
+    }
 }
 
 
