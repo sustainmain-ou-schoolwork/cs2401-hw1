@@ -90,7 +90,7 @@ istream& operator >> (istream& ins, Check& c){
  * @param ins the stream to be cleared of newlines
  */
 void Check::clearNewlines(std::istream& ins) {
-    while (cin.peek() == '\n' || cin.peek() == '\r') {
-        cin.ignore();
+    while (ins.peek() == '\n' || ins.peek() == '\r') {
+        ins.ignore();
     }
 }

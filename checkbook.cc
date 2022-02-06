@@ -27,15 +27,22 @@ void Checkbook::write_check(std::istream& ins) {
     Check tmp;
     ins >> tmp;
 
-    // set the check number if it wasn't previously set
-    if (&ins == &cin) {
-        tmp.set_check_num(nextCheckNum);
-    }
+    // only add the check if all the data was read s
+    if (!ins.fail()) {
+        // if input is from console
+        if (&ins == &cin) {
+            // set the check number
+            tmp.set_check_num(nextCheckNum);
+            nextCheckNum++;
 
-    // add the check to the checkbook
-    checks[used] = tmp;
-    used++;
-    nextCheckNum++;
+            // subtract check amount from balance
+            balance -= tmp.get_amount();
+        }
+
+        // add the check to the checkbook
+        checks[used] = tmp;
+        used++;
+    }
 }
 
 void Checkbook::remove(size_t checkNum) {
@@ -61,11 +68,25 @@ void Checkbook::date_sort() {
 
 // file operation
 
-
+/**
+ * @brief Loads the checkbook data from an ostream.
+ * 
+ * @param fileStream the stream to read checkbook data from
+ */
 void Checkbook::load_from_file(std::ifstream& fileStream) {
+    string lineIn;
 
+    // get account info
+    getline(fileStream, lineIn);
+    balance = stod(lineIn);
+    fileStream >> nextCheckNum;
+    clearNewlines(fileStream);
+
+    // get individual checks
+    while (!fileStream.fail()) {
+        write_check(fileStream);
+    }
 }
-
 
 /**
  * @brief Outputs the checkbook data to an ostream.
@@ -115,7 +136,7 @@ double Checkbook::average() const {
  * @param ins the stream to be cleared of newlines
  */
 void Checkbook::clearNewlines(std::istream& ins) {
-    while (cin.peek() == '\n' || cin.peek() == '\r') {
-        cin.ignore();
+    while (ins.peek() == '\n' || ins.peek() == '\r') {
+        ins.ignore();
     }
 }
