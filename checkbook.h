@@ -17,7 +17,7 @@ class Checkbook {
         int get_balance() const {return balance;}
 
         // modifier
-        void deposit(size_t amount) {balance += amount;}
+        void deposit(double amount) {balance += amount;}
         void write_check(std::istream& ins);
         void remove(size_t checkNum);
 
