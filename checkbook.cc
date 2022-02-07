@@ -99,8 +99,26 @@ void Checkbook::payto_sort() {
 
 }
 
+/**
+ * @brief Sort the checks in the checkbook by date.
+ */
 void Checkbook::date_sort() {
+    bool done = false;
+    size_t i;
+    Check tmp;
 
+    // bubble sort
+    while (!done) {
+        done = true;
+        for (i = used - 1; i > 0; --i) {
+            if (checks[i].get_date() < checks[i - 1].get_date()) {
+                done = false;
+                tmp = checks[i];
+                checks[i] = checks[i - 1];
+                checks[i - 1] = tmp;
+            }
+        }
+    }
 }
 
 
