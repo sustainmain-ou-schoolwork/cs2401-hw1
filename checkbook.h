@@ -43,6 +43,7 @@ class Checkbook {
 
         // helper functions
         void clearNewlines(std::istream& ins);
+        std::string stringToUpper(std::string input) const;
 };
 
 #endif

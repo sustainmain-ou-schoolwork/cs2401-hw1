@@ -95,8 +95,26 @@ void Checkbook::number_sort() {
     }
 }
 
+/**
+ * @brief Sort the checks in the checkbook by payto value.
+ */
 void Checkbook::payto_sort() {
+    bool done = false;
+    size_t i;
+    Check tmp;
 
+    // bubble sort
+    while (!done) {
+        done = true;
+        for (i = used - 1; i > 0; --i) {
+            if (stringToUpper(checks[i].get_payto()) < stringToUpper(checks[i - 1].get_payto())) {
+                done = false;
+                tmp = checks[i];
+                checks[i] = checks[i - 1];
+                checks[i - 1] = tmp;
+            }
+        }
+    }
 }
 
 /**
@@ -202,6 +220,9 @@ double Checkbook::average() const {
     return total / used;
 }
 
+
+// helper
+
 /**
  * @brief Clears out any newline characters at the beginning of the stream
  * 
@@ -211,4 +232,19 @@ void Checkbook::clearNewlines(std::istream& ins) {
     while (ins.peek() == '\n' || ins.peek() == '\r') {
         ins.ignore();
     }
+}
+
+/**
+ *  @brief Converts an entire string to uppercase.
+ * 
+ *  @param input the string to be converted
+ *  @return the string in uppercase
+ */
+std::string Checkbook::stringToUpper(std::string input) const {
+    string output = "";
+    for (size_t i = 0; i < input.length(); i++) {
+        output += toupper(input.at(i));
+    }
+
+    return output;
 }
