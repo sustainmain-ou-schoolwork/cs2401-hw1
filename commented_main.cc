@@ -89,7 +89,7 @@ int main(){
 				mychecks.show(payto_find);
 				break;
 			case 10:
-				cout << "Your average check amount: $" << mychecks.average();
+				cout << "Your average check amount: $" << mychecks.average() << endl;
 				break;
 			case 0:
 				cout << "Thank you for using the Checkbook program.\n";
@@ -99,6 +99,7 @@ int main(){
 				cout << "Invalid choice. Please choose again.\n";
 				break;
 		}
+		cout << '\n';
     } while (choice != 0);
 
 	ofs.open(userfile.c_str());

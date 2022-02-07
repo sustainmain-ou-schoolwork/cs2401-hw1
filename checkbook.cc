@@ -128,9 +128,15 @@ void Checkbook::save(std::ofstream& fileStream) const {
 
 // display or calculate info
 
-
+/**
+ * @brief Outputs the checkbook data of all checks.
+ * 
+ * @param outs the stream to output the data to
+ */
 void Checkbook::show_all(std::ostream& outs) const {
-
+    for (size_t i = 0; i < used; i++) {
+        cout << '\n' << checks[i] << endl;
+    }
 }
 
 /**
@@ -153,7 +159,7 @@ void Checkbook::show(std::string payto_query) const {
  * @return the average
  */
 double Checkbook::average() const {
-    int total = 0;
+    double total = 0;
     for (size_t i = 0; i < used; i++) {
         total += checks[i].get_amount();
     }
