@@ -52,6 +52,7 @@ void Checkbook::write_check(std::istream& ins) {
  */
 void Checkbook::remove(size_t checkNum) {
     for (size_t i = 0; i < used; i++) {
+        // if the check at i is the one to remove
         if (static_cast<size_t>(checks[i].get_num()) == checkNum) {
             // move all the remaining checks up one place in the checkbook, effectively deleting the last
             for (size_t j = i; j < (used - 1); j++) {
@@ -132,8 +133,18 @@ void Checkbook::show_all(std::ostream& outs) const {
 
 }
 
+/**
+ * @brief Outputs the checkbook data of all checks that have a given payto value.
+ * 
+ * @param payto_query the payto value to search for
+ */
 void Checkbook::show(std::string payto_query) const {
-
+    for (size_t i = 0; i < used; i++) {
+        // if the check matches the query
+        if (checks[i].get_payto() == payto_query) {
+            cout << '\n' << checks[i] << endl;
+        }
+    }
 }
 
 /**
