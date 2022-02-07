@@ -2,7 +2,6 @@
 using namespace std;
 
 
-// default constructor
 Checkbook::Checkbook() {
     used = 0;
     nextCheckNum = 1;
@@ -12,11 +11,6 @@ Checkbook::Checkbook() {
 
 // modifier
 
-/**
- * @brief Adds a check to the checkbood.
- * 
- * @param ins stream to read check data from
- */
 void Checkbook::write_check(std::istream& ins) {
     if (used >= SIZE) {
         cout << "Checkbook is full." << endl;
@@ -45,11 +39,6 @@ void Checkbook::write_check(std::istream& ins) {
     }
 }
 
-/**
- * @brief Remove a check from the checkbood.
- * 
- * @param checkNum number of the check to remove
- */
 void Checkbook::remove(size_t checkNum) {
     for (size_t i = 0; i < used; i++) {
         // if the check at i is the one to remove
@@ -73,9 +62,6 @@ void Checkbook::remove(size_t checkNum) {
 
 // sorter
 
-/**
- * @brief Sort the checks in the checkbook by check number.
- */
 void Checkbook::number_sort() {
     bool done = false;
     size_t i;
@@ -95,9 +81,6 @@ void Checkbook::number_sort() {
     }
 }
 
-/**
- * @brief Sort the checks in the checkbook by payto value.
- */
 void Checkbook::payto_sort() {
     bool done = false;
     size_t i;
@@ -117,9 +100,6 @@ void Checkbook::payto_sort() {
     }
 }
 
-/**
- * @brief Sort the checks in the checkbook by date.
- */
 void Checkbook::date_sort() {
     bool done = false;
     size_t i;
@@ -142,11 +122,6 @@ void Checkbook::date_sort() {
 
 // file operation
 
-/**
- * @brief Loads the checkbook data from an ostream.
- * 
- * @param fileStream the stream to read checkbook data from
- */
 void Checkbook::load_from_file(std::ifstream& fileStream) {
     string lineIn;
 
@@ -162,11 +137,6 @@ void Checkbook::load_from_file(std::ifstream& fileStream) {
     }
 }
 
-/**
- * @brief Outputs the checkbook data to an ostream.
- * 
- * @param fileStream the stream to output checkbook data to
- */
 void Checkbook::save(std::ofstream& fileStream) const {
     fileStream << balance << '\n';
     fileStream << nextCheckNum << '\n';
@@ -181,22 +151,12 @@ void Checkbook::save(std::ofstream& fileStream) const {
 
 // display or calculate info
 
-/**
- * @brief Outputs the checkbook data of all checks.
- * 
- * @param outs the stream to output the data to
- */
 void Checkbook::show_all(std::ostream& outs) const {
     for (size_t i = 0; i < used; i++) {
         cout << '\n' << checks[i] << endl;
     }
 }
 
-/**
- * @brief Outputs the checkbook data of all checks that have a given payto value.
- * 
- * @param payto_query the payto value to search for
- */
 void Checkbook::show(std::string payto_query) const {
     for (size_t i = 0; i < used; i++) {
         // if the check matches the query
@@ -206,11 +166,6 @@ void Checkbook::show(std::string payto_query) const {
     }
 }
 
-/**
- * @brief Returns the average amount of all checks in the checkbook.
- * 
- * @return the average
- */
 double Checkbook::average() const {
     double total = 0;
     for (size_t i = 0; i < used; i++) {
@@ -223,23 +178,12 @@ double Checkbook::average() const {
 
 // helper
 
-/**
- * @brief Clears out any newline characters at the beginning of the stream
- * 
- * @param ins the stream to be cleared of newlines
- */
 void Checkbook::clearNewlines(std::istream& ins) {
     while (ins.peek() == '\n' || ins.peek() == '\r') {
         ins.ignore();
     }
 }
 
-/**
- *  @brief Converts an entire string to uppercase.
- * 
- *  @param input the string to be converted
- *  @return the string in uppercase
- */
 std::string Checkbook::stringToUpper(std::string input) const {
     string output = "";
     for (size_t i = 0; i < input.length(); i++) {
