@@ -57,10 +57,19 @@ void Check::write_check(std::istream& ins){
  * @param outs the stream to output the data to
  */
 void Check::output(std::ostream& outs)const{
-	outs << checknum << '\n';
-    outs << date << '\n';
-    outs << payto << '\n';
-    outs << fixed << setprecision(2) << amount << endl;
+    if (&outs == &cout) {
+        outs << left << setw(11) << "Check num:" << checknum << '\n';
+        outs << left << setw(11) << "Date:" << date << '\n';
+        outs << left << setw(11) << "Payto:" << payto << '\n';
+        outs << left << setw(11) << "Amount:" << fixed << setprecision(2) << amount << endl;
+    }
+    else {
+        outs << checknum << '\n';
+        outs << date << '\n';
+        outs << payto << '\n';
+        outs << fixed << setprecision(2) << amount << endl;
+    }
+ 
 }
 
 /**
