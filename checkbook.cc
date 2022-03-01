@@ -54,7 +54,6 @@ void Checkbook::remove(size_t checkNum) {
             
             // decrement counters
             used--;
-            nextCheckNum--;
         }
     }
 }
