@@ -25,7 +25,7 @@ class Checkbook {
          * 
          * @return balance of the checkbook
          */
-        int get_balance() const {return balance;}
+        double get_balance() const {return balance;}
 
 
         // modifier

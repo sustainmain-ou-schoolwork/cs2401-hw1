@@ -7,6 +7,7 @@
 	Patricia Lindner	Ohio University EECS	August 2021
 *************************************************************************/
 #include "check.h"
+#include <iomanip>
 using namespace std;
 
 
@@ -59,7 +60,7 @@ void Check::output(std::ostream& outs)const{
 	outs << checknum << '\n';
     outs << date << '\n';
     outs << payto << '\n';
-    outs << amount << endl;
+    outs << fixed << setprecision(2) << amount << endl;
 }
 
 /**
